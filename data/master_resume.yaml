@@ -1,0 +1,89 @@
+candidate:
+  name: Marion Moranetz
+  city: San Francisco
+  positioning: Indie iOS founder + persuasion-systems builder. Targeting first AE seat at AI-infra or dev-tools companies (~50-150 people).
+
+master_bullets:
+  shipping:
+    - id: ios-portfolio
+      bullet: "Shipped 17 native iOS apps to the App Store in 5 months (Nov 2025–May 2026) — design, build, fastlane, ASC submission, support docs."
+      tags: [shipping, ios, founder-buyer-credential]
+      relevance: {ai-infra: high, dev-tools: high, fintech: medium, sales-tools: low}
+
+    - id: selected-work
+      bullet: "Curated selected-work gallery (35+ projects across 6 categories) at moranetz.github.io/selected-work — shows range without overwhelm."
+      tags: [taste, design, portfolio]
+      relevance: {ai-infra: medium, dev-tools: high, fintech: medium, sales-tools: low}
+
+    - id: poseprompter
+      bullet: "PosePrompter — full Stripe Connect billing for an AI-assisted iOS app. Live revenue infrastructure, not a demo."
+      tags: [billing, ai, stripe, monetization]
+      relevance: {ai-infra: medium, dev-tools: medium, fintech: very-high, sales-tools: low}
+
+  research:
+    - id: closing-evidence-atlas
+      bullet: "Closing Evidence Atlas — pre-registered Bayesian random-effects meta-analysis of 39 named persuasion techniques. 44 records extracted from peer-reviewed literature; 6 per-technique posteriors live at github.com/Moranetz/closing-evidence-atlas."
+      tags: [research, bayesian, persuasion, rigor]
+      relevance: {ai-infra: high, dev-tools: medium, fintech: medium, sales-tools: very-high}
+
+    - id: persuasion-max
+      bullet: "Persuasion-Max — open framework decomposing 100+ B2B persuasion techniques by mechanism, evidence quality, and failure mode. Source for all client-facing copy."
+      tags: [research, persuasion, frameworks]
+      relevance: {ai-infra: medium, dev-tools: medium, fintech: medium, sales-tools: very-high}
+
+  sales-tooling:
+    - id: outreach-lab
+      bullet: "outreach-lab — open-source CLI tool that generates technique-tagged cold outreach + per-company resume tailoring, citing Atlas posteriors. github.com/Moranetz/outreach-lab"
+      tags: [sales-tooling, automation, builder]
+      relevance: {ai-infra: high, dev-tools: high, fintech: high, sales-tools: very-high}
+
+    - id: gtm-teardowns
+      bullet: "GTM teardowns — public critical reviews of 8 SF startup go-to-market motions. Specific, sharp, no hedging."
+      tags: [sales-research, gtm, analytical]
+      relevance: {ai-infra: high, dev-tools: high, fintech: high, sales-tools: high}
+
+  applied-persuasion:
+    - id: persuasion-trainer-ios
+      bullet: "MindCraft — Duolingo-style iOS app teaching 7 persuasion mechanisms across 56 mechanism-tagged drills."
+      tags: [ios, persuasion, edtech]
+      relevance: {ai-infra: low, dev-tools: low, fintech: low, sales-tools: very-high}
+
+    - id: reality-distortion
+      bullet: "Reality Distortion — iOS game teaching cognitive-bias awareness through interactive simulations."
+      tags: [ios, persuasion, games]
+      relevance: {ai-infra: low, dev-tools: low, fintech: low, sales-tools: medium}
+
+  off-brand-for-most-seats:
+    # bullets to CUT for most AE applications
+    - id: fitness-apps
+      bullet: "Date Ranker, Coastal Compass, Marrow, Tangerine Hour — lifestyle/wellness iOS apps."
+      tags: [lifestyle, off-brand]
+      relevance: {ai-infra: cut, dev-tools: cut, fintech: cut, sales-tools: cut}
+
+experience:
+  - role: Indie iOS Founder
+    company: Self-directed (17 apps live, 3 more in submission)
+    location: San Francisco
+    start: 2025-11
+    end: present
+    summary: Design, ship, and support consumer iOS apps. End-to-end ownership of build, App Store submission, customer support, and (where applicable) monetization.
+
+  - role: Persuasion Researcher
+    company: Closer Foundation (independent research program)
+    location: San Francisco
+    start: 2026-02
+    end: present
+    summary: Built the Closing Evidence Atlas (pre-registered Bayesian meta-analysis of 39 persuasion techniques) and the Persuasion-Max framework for B2B copy.
+
+skills:
+  - Cold outreach (technique-tagged, A/B-tested via outreach-lab)
+  - Bayesian meta-analysis (PyMC, brms, hand-coded importance sampling)
+  - iOS development (Swift, SwiftUI, fastlane, App Store Connect API)
+  - Sales tooling (Python, CLI, Claude API)
+  - Editorial writing (research-grade prose, marketing copy, technical docs)
+
+education:
+  # Marion to fill in — left blank intentionally
+  - degree: TBD
+    school: TBD
+    year: TBD

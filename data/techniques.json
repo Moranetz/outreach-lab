@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "source": "Closing Evidence Atlas v0.1 — github.com/Moranetz/closing-evidence-atlas",
+    "extraction_date": "2026-05-10",
+    "note": "Posterior μ + 95% CI on Cohen's d, random-effects Bayesian meta-analysis (DerSimonian-Laird τ + importance sampling). Effect sizes are persuasion → conversion outcomes; not all techniques have closed-loop revenue evidence — see Atlas for inclusion criteria.",
+    "interpretation": "d ≈ 0.2 small, 0.5 medium, 0.8 large. CI excluding 0 = posterior P>0.95 the effect is positive."
+  },
+  "techniques": [
+    {
+      "id": "gain-framing",
+      "name": "Gain framing",
+      "definition": "Emphasize positive outcomes of the desired behavior (\"you'll save X\") rather than negative consequences of not acting.",
+      "atlas_posterior": {"d_mu": 0.354, "ci_lower": 0.12, "ci_upper": 0.59, "k_studies": 8, "tau2": 0.08},
+      "when_to_use": "Customer is already curious / inbound. Activation moment.",
+      "when_to_avoid": "Hard sell / contested negotiation — loss framing tends to outperform there.",
+      "example_skeleton": "Just shipped X. Teams using it cut Y from Z to W in the first 30 days."
+    },
+    {
+      "id": "loss-framing",
+      "name": "Loss framing",
+      "definition": "Emphasize negative consequences of NOT adopting the behavior.",
+      "atlas_posterior": {"d_mu": 0.48, "ci_lower": 0.21, "ci_upper": 0.78, "k_studies": 9, "tau2": 0.11},
+      "when_to_use": "Buyer is already considering switching / dissatisfied with status quo.",
+      "when_to_avoid": "First touch with a cold prospect — can read as fear-mongering.",
+      "example_skeleton": "Most teams in your stage are burning $X/mo on Y. The fix takes 20 minutes."
+    },
+    {
+      "id": "social-proof",
+      "name": "Social proof",
+      "definition": "Cite peers / similar entities who have already adopted.",
+      "atlas_posterior": {"d_mu": 0.42, "ci_lower": 0.15, "ci_upper": 0.71, "k_studies": 11, "tau2": 0.09},
+      "when_to_use": "Buyer is uncertain about category. Mid-funnel.",
+      "when_to_avoid": "Buyer thinks of themselves as a category-of-one (rare founders, contrarians).",
+      "example_skeleton": "5 of the 10 fastest-growing X are already on Y."
+    },
+    {
+      "id": "scarcity-urgency",
+      "name": "Scarcity / urgency",
+      "definition": "Limited availability, limited time, or limited slots.",
+      "atlas_posterior": {"d_mu": 0.51, "ci_lower": 0.20, "ci_upper": 0.85, "k_studies": 7, "tau2": 0.14},
+      "when_to_use": "Late-funnel — buyer has decided category, deciding vendor.",
+      "when_to_avoid": "Cold first touch — false scarcity is the #1 trust-killer in B2B.",
+      "example_skeleton": "We're taking on 3 design partners for Q3. 1 left."
+    },
+    {
+      "id": "anchoring",
+      "name": "Anchoring",
+      "definition": "Establish a high reference point so the actual ask feels small.",
+      "atlas_posterior": {"d_mu": 0.39, "ci_lower": 0.07, "ci_upper": 0.74, "k_studies": 6, "tau2": 0.12},
+      "when_to_use": "Pricing conversation. Negotiation opener.",
+      "when_to_avoid": "First-message subject line.",
+      "example_skeleton": "Most teams of your size end up at $120k/yr on this stack. We'd start you at $40k."
+    },
+    {
+      "id": "specificity-credibility",
+      "name": "Specificity / credibility (precise numbers > round numbers)",
+      "definition": "Use concrete, asymmetric numbers (\"$47,310 saved\" not \"$50k saved\") to signal real measurement.",
+      "atlas_posterior": {"d_mu": 0.31, "ci_lower": 0.04, "ci_upper": 0.60, "k_studies": 5, "tau2": 0.07},
+      "when_to_use": "Anywhere claims appear.",
+      "when_to_avoid": "When you actually don't have specific numbers — fabricated precision is worse than round honesty.",
+      "example_skeleton": "Cut p99 from 412ms to 89ms in 11 days."
+    }
+  ]
+}

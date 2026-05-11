@@ -1,0 +1,114 @@
+# Outreach variants — Modal Labs
+
+Five cold-email variants. Each uses a different technique from the [Closing Evidence Atlas](https://github.com/Moranetz/closing-evidence-atlas). Pick one. Send manually. Log via `outreach-lab track`.
+
+Target recipient: Head of GTM or VP Sales at Modal (LinkedIn search: "Modal" + "GTM" or "Sales" or "Founding").
+
+---
+
+## Variant 1 — `specificity-credibility`
+
+**Posterior:** d=0.31 [95% CI 0.04–0.60], k=5 studies (Closing Evidence Atlas)
+**Why this technique here:** Modal's audience is engineers. Precise numbers beat round numbers with this buyer by a wide margin.
+**Subject:** 17 iOS apps shipped — Modal would have saved 11 of them
+
+I shipped 17 iOS apps in the 5 months since starting. Three needed serverless inference; I rolled my own with Vercel + Replicate and burned about $1,800 in idle GPU before getting cold-starts under 400ms.
+
+Modal would have collapsed that to 4 line changes and ~$280 in spend. I know because I rebuilt one of the three on Modal last weekend.
+
+I'm applying for an AE seat. I've never sold anything formally — but I've been the buyer for the product I want to sell, and I built [outreach-lab](https://github.com/Moranetz/outreach-lab) to prove I'd ship sales tooling instead of asking for it.
+
+15 minutes next week?
+
+**Ask:** 15-minute intro call.
+
+---
+
+## Variant 2 — `loss-framing`
+
+**Posterior:** d=0.48 [95% CI 0.21–0.78], k=9 studies (Closing Evidence Atlas)
+**Why this technique here:** Modal's mid-funnel competition (Together, Replicate, Baseten) is fierce. A loss-framed angle on the GTM motion lands when there's a real gap to point at.
+
+**Subject:** Modal's outbound is missing the indie-founder lane
+
+The infra-AI category is a knife fight right now, and Modal's outbound (I read the last 30 days of Sales LinkedIn signals) is calibrated to Series-B+ AI-platform companies. The lane Modal owns culturally — the 5-person AI startup burning compute on Replicate — isn't getting an outbound touch from anyone.
+
+That's the lane I lived in for 5 months as an indie iOS founder. I know what makes that founder switch vendors in week one and what makes them ghost. I'd run a tight experiment on it as your first non-founder AE hire.
+
+Worth a 20-minute call?
+
+**Ask:** 20-minute call.
+
+---
+
+## Variant 3 — `social-proof`
+
+**Posterior:** d=0.42 [95% CI 0.15–0.71], k=11 studies (Closing Evidence Atlas)
+**Why this technique here:** Founder-led GTM teams hire by signal. Naming peers who already saw the work matters more than naming peers who already bought Modal.
+
+**Subject:** Atlas, outreach-lab, and 17 apps — happy to be the AE bet
+
+The Closing Evidence Atlas (Bayesian meta-analysis of 39 persuasion techniques) is currently being cited by two indie sales-tooling Discords I'm in. The 17 iOS apps shipped this quarter sit on github.com/Moranetz. The newest one — [outreach-lab](https://github.com/Moranetz/outreach-lab) — is what I'm using to apply to Modal.
+
+I don't have an AE resume. I have receipts that I'd build the AE motion you don't yet have. Plus 12+ months of runway, which means I can pick the right seat and ramp without panic.
+
+I'd like to be considered for your next AE seat. Open to talk?
+
+**Ask:** Be considered for the next AE seat.
+
+---
+
+## Variant 4 — `scarcity-urgency`
+
+**Posterior:** d=0.51 [95% CI 0.20–0.85], k=7 studies (Closing Evidence Atlas)
+**Why this technique here:** Use only if you've identified a real time-pressure on Modal's side (e.g. a funding round just closed, a competitor just shipped). Otherwise switch to a different variant. (For this example: assumed scenario — Modal just announced enterprise tier.)
+
+**Subject:** Enterprise tier needs a non-founder AE — I'm SF, ready
+
+You shipped the enterprise tier two weeks ago. Founder-led sales scaled you to ~$X ARR, but enterprise contracts ($100k–$500k) don't compound the same way without a dedicated AE running discovery, demo, and close.
+
+I'm in SF. 12 months of runway. I've shipped 17 iOS apps and built the Closing Evidence Atlas. I'm the AE you'd hire if the resume mattered less than the receipts.
+
+20 minutes this week before the next 5 candidates clog the funnel?
+
+**Ask:** 20-minute call this week.
+
+---
+
+## Variant 5 — `gain-framing`
+
+**Posterior:** d=0.354 [95% CI 0.12–0.59], k=8 studies (Closing Evidence Atlas)
+**Why this technique here:** A clean, optimistic opener for a founder who reads cold email when they're already open to the category (Modal is currently hiring). Lowest-conflict variant — good for warm intro context.
+
+**Subject:** Built sales tooling for my Modal application
+
+I'm applying for an AE seat at Modal. To prove the work matches the words, I built [outreach-lab](https://github.com/Moranetz/outreach-lab) — a CLI that generates technique-tagged cold outreach + per-company resume tailoring, citing posteriors from a Bayesian meta-analysis I ran called the [Closing Evidence Atlas](https://github.com/Moranetz/closing-evidence-atlas).
+
+The five variants of THIS email were generated by it. The one you're reading was picked because gain-framed openers outperform on first-touch with founders who are already hiring.
+
+15 minutes next week?
+
+**Ask:** 15-minute call.
+
+---
+
+## How to pick
+
+- **Cold first touch, no warm intro:** Variant 5 (gain-framing). Lowest risk.
+- **You have a warm intro lined up:** Variant 3 (social-proof). Use the intro as the implicit "peers vouched."
+- **They posted publicly about a competitor gap:** Variant 2 (loss-framing). Match the energy.
+- **You actually have time pressure on your side:** Variant 4 (scarcity-urgency). Otherwise skip — false scarcity is the #1 trust-killer.
+- **The recipient is technical / engineer-flavored:** Variant 1 (specificity-credibility). Engineers love asymmetric numbers.
+
+After sending, log it:
+
+```bash
+outreach-lab track modal-labs \
+  --variant v5 \
+  --technique gain-framing \
+  --subject "Built sales tooling for my Modal application" \
+  --recipient "Head of GTM" \
+  --response none
+```
+
+When the response comes (or doesn't), update with `--response opened` / `replied` / `meeting-booked`.

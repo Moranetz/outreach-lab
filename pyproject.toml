@@ -1,0 +1,27 @@
+[project]
+name = "outreach-lab"
+version = "0.1.0"
+description = "Technique-tagged cold-outreach generator powered by the Closing Evidence Atlas posteriors. Built by Marion Moranetz as part of an AE job search."
+authors = [{name = "Marion Moranetz"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "anthropic>=0.40.0",
+  "click>=8.1.0",
+  "pyyaml>=6.0",
+  "rich>=13.0",
+]
+
+[project.scripts]
+outreach-lab = "outreach_lab.cli:cli"
+
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["outreach_lab*"]
+
+[tool.setuptools.package-data]
+outreach_lab = ["../data/*.json"]

@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.env
+.DS_Store
+
+# user data — keep per-target outputs local
+outputs/
+outreach_log.csv
+targets/*.yaml
+!targets/example.yaml

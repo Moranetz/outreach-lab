@@ -1,0 +1,22 @@
+slug: modal-labs
+company_name: Modal Labs
+company_url: https://modal.com
+careers_url: https://modal.com/careers
+category: ai-infra
+size_band: 50-100 people
+buyer_persona: |
+  Founder/CTO of an AI-product startup (Seed–Series B) burning through compute.
+  Cares about: GPU availability, cold-start latency, billing predictability, devex.
+  Decides in 2-4 weeks. Champion is usually the senior engineer who first deployed.
+product_one_liner: Serverless GPU + containerized compute for AI workloads. Spin up a function on an H100 in seconds, pay per second.
+pricing_summary: Per-GPU-second + per-CPU-second. Volume tiers at $10k/mo, $50k/mo. Enterprise contracts $100k–$500k+/yr.
+known_competitors: [Together AI, Replicate, Baseten, Fireworks AI, Modal, Beam, Lambda Labs]
+your_angle: |
+  You are the buyer Modal sells to — an indie iOS founder shipping AI features, who's chosen the serverless-GPU pattern before.
+  Your Closing Evidence Atlas signals research rigor that resonates with engineering-led GTM.
+  Your outreach-lab tool dogfoods sales engineering.
+target_role: Account Executive
+target_role_url: https://modal.com/careers
+ideal_first_contact: |
+  Head of GTM, VP Sales, or — for smaller AI-infra companies — a founder directly.
+  Search LinkedIn: "Modal" + "Sales" or "GTM" or "Founding".
