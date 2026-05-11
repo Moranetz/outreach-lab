@@ -1,0 +1,13 @@
+sent_date,slug,company,variant_id,technique_id,subject,recipient_role,channel,response,outcome,notes
+2026-04-22,modal-labs,Modal Labs,v1,gain-framing,Built sales tooling for my Modal application,VP Sales,email,replied,qualified,asked for portfolio
+2026-04-23,together-ai,Together AI,v2,loss-framing,The cost of staying on a generic AE,Head of GTM,email,opened,pending,
+2026-04-24,vapi,Vapi,v4,social-proof,Why three voice-AI teams hired evidence-first AEs,Founder,email,none,dead,
+2026-04-25,baseten,Baseten,v3,commitment-consistency,15 minutes to confirm one assumption about Baseten GTM,VP Sales,email,meeting-booked,qualified,booked for 5/2
+2026-04-28,replicate,Replicate,v1,gain-framing,Built sales tooling for my Replicate application,Head of Sales,email,opened,pending,
+2026-04-29,fireworks-ai,Fireworks AI,v2,loss-framing,What you're leaving on the table without a tooling-builder AE,VP GTM,linkedin,replied,pending,short reply, asked for resume
+2026-04-30,anyscale,Anyscale,v5,regulatory-fit,Reducing AE-ramp risk from 9 months to 90 days,CRO,email,opened,pending,
+2026-05-01,runpod,RunPod,v4,social-proof,Why three infra teams hired evidence-first AEs,Founder,email,none,dead,
+2026-05-02,octoai,OctoAI,v3,commitment-consistency,15 minutes to confirm one assumption about OctoAI GTM,VP Sales,email,replied,qualified,
+2026-05-05,lambda-labs,Lambda Labs,v2,loss-framing,The cost of staying on a generic AE,Head of Sales,email,meeting-booked,qualified,booked for 5/12
+2026-05-06,e2b,E2B,v1,gain-framing,Built sales tooling for my E2B application,Founder,email,opened,pending,
+2026-05-07,modal-labs,Modal Labs,v5,regulatory-fit,Reducing AE-ramp risk from 9 months to 90 days,CRO,email,none,dead,follow-up after no v1 reply

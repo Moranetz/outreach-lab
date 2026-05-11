@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>outreach-lab dashboard — cohort response rates by technique</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0F172A;
+  --ink-soft: #334155;
+  --ink-mute: #64748B;
+  --ink-faint: #94A3B8;
+  --accent: #1E3A5F;
+  --accent-soft: #4A6FA5;
+  --accent-tint: #EBF1F8;
+  --bg: #FFFFFF;
+  --warn: #B45309;
+  --warn-tint: #FEF3C7;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: 'JetBrains Mono', Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 32px;
+}
+
+.banner {
+  background: var(--warn-tint);
+  border-left: 4px solid var(--warn);
+  padding: 12px 16px;
+  margin-bottom: 40px;
+  font-size: 14px;
+  color: var(--warn);
+  border-radius: 4px;
+}
+.banner code {
+  font-family: var(--mono);
+  background: rgba(0,0,0,0.06);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+header { margin-bottom: 48px; }
+header h1 {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+header .subtitle {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+header .lead {
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 640px;
+  line-height: 1.6;
+}
+header .lead a { color: var(--accent); }
+
+section { margin-bottom: 56px; }
+section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--ink-faint);
+  padding-bottom: 8px;
+}
+section .desc {
+  font-size: 14px;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat {
+  background: var(--accent-tint);
+  border-left: 3px solid var(--accent);
+  padding: 16px 18px;
+  border-radius: 4px;
+}
+.stat .num {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat .label {
+  font-size: 11px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--ink-faint);
+}
+th {
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--accent-tint);
+}
+th:not(:first-child), td:not(:first-child) { text-align: right; }
+td.tech-name { font-weight: 500; color: var(--ink); }
+td.posterior { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); }
+
+.bar-chart { margin-top: 24px; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 60px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.bar-label { color: var(--ink); font-weight: 500; }
+.bar-track {
+  background: var(--accent-tint);
+  height: 24px;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  background: var(--accent);
+  height: 100%;
+  border-radius: 3px 0 0 3px;
+  transition: width 0.4s ease;
+}
+.bar-value { font-family: var(--mono); color: var(--ink-mute); text-align: right; font-size: 12px; }
+
+footer {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ink-faint);
+  font-size: 12px;
+  color: var(--ink-mute);
+}
+footer a { color: var(--accent); }
+
+.callout {
+  background: var(--accent-tint);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  border-left: 4px solid var(--accent);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.callout strong { color: var(--ink); }
+
+@media (max-width: 700px) {
+  .summary { grid-template-columns: repeat(2, 1fr); }
+  .bar-row { grid-template-columns: 130px 1fr 50px; font-size: 12px; }
+  header h1 { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="banner">
+    <strong>Sample data.</strong>
+    This dashboard renders from <code>dashboard/sample_log.csv</code>. To see your own results,
+    replace it with your <code>outreach_log.csv</code> from <code>outreach-lab track</code>.
+  </div>
+
+  <header>
+    <div class="subtitle">outreach-lab · cohort dashboard · v0.1</div>
+    <h1>Response rates by technique</h1>
+    <p class="lead">
+      A public, read-only window into the dataset behind a technique-tagged outreach experiment.
+      Each send is tagged with one of the six techniques that have current posteriors in the
+      <a href="https://github.com/Moranetz/closing-evidence-atlas">Closing Evidence Atlas</a>.
+      The point isn't the absolute numbers — it's whether response rates by technique line up
+      with the underlying meta-analytic effect sizes.
+    </p>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <div class="desc">All sends across all targets, current sample.</div>
+    <div class="summary" id="summary"></div>
+  </section>
+
+  <section>
+    <h2>Cohort table</h2>
+    <div class="desc">Per-technique response funnel. Open % is the fraction of sends that produced any signal (opened / replied / meeting-booked).</div>
+    <table id="cohort">
+      <thead>
+        <tr>
+          <th>Technique</th>
+          <th>Sent</th>
+          <th>Opened</th>
+          <th>Replied</th>
+          <th>Meetings</th>
+          <th>Open %</th>
+          <th>Reply %</th>
+          <th>Atlas posterior</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Open rate by technique</h2>
+    <div class="desc">Visual cross-check. Bars below should track posterior d-values in the Atlas reference table at the bottom.</div>
+    <div class="bar-chart" id="bars"></div>
+  </section>
+
+  <section>
+    <h2>Closing Evidence Atlas posteriors (reference)</h2>
+    <div class="desc">The six techniques with current meta-analytic posteriors. d-values are random-effects pooled across the studies cited.</div>
+    <table id="atlas">
+      <thead>
+        <tr>
+          <th>Technique</th>
+          <th>d (median)</th>
+          <th>95% CrI</th>
+          <th>k studies</th>
+          <th>P(d&gt;0)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="callout">
+      <strong>About the empirical deserts.</strong> The Atlas catalogs 39 named closing techniques. 15 of them — including the assumptive close, alternative-choice close, summary close, trial close, Ben Franklin close, mirroring, accusation audit, multi-threading, and SPIN's deepest two question forms — have <strong>zero peer-reviewed empirical studies meeting standard inclusion criteria</strong>. They get taught anyway. Outreach generated by <a href="https://github.com/Moranetz/outreach-lab">outreach-lab</a> does not lean on those techniques by default.
+    </div>
+  </section>
+
+  <footer>
+    Built by <a href="https://github.com/Moranetz">Marion Moranetz</a> ·
+    Source: <a href="https://github.com/Moranetz/outreach-lab">github.com/Moranetz/outreach-lab</a> ·
+    MIT licensed ·
+    Updated when the CSV updates.
+  </footer>
+</div>
+
+<script>
+const ATLAS = {
+  "gain-framing":           { d: 0.354, lo: 0.280, hi: 0.429, k: 9, p: 1.000, name: "Gain framing" },
+  "loss-framing":           { d: 0.327, lo: 0.249, hi: 0.410, k: 7, p: 1.000, name: "Loss-aversion framing" },
+  "regulatory-fit":         { d: 0.484, lo: 0.346, hi: 0.632, k: 3, p: 0.9998, name: "Regulatory fit" },
+  "extreme-anchor":         { d: 0.435, lo: 0.043, hi: 0.745, k: 2, p: 0.983, name: "Extreme anchor" },
+  "social-proof":           { d: 0.682, lo: -0.206, hi: 1.296, k: 2, p: 0.937, name: "Social proof" },
+  "commitment-consistency": { d: 0.590, lo: 0.331, hi: 0.782, k: 2, p: 0.999, name: "Commitment & consistency" }
+};
+
+function parseCSV(text) {
+  const rows = text.trim().split('\n').map(r => {
+    // very simple CSV parser — assumes no embedded commas in quotes for fields we care about
+    const cells = [];
+    let cur = '';
+    let inQ = false;
+    for (const ch of r) {
+      if (ch === '"') { inQ = !inQ; continue; }
+      if (ch === ',' && !inQ) { cells.push(cur); cur = ''; continue; }
+      cur += ch;
+    }
+    cells.push(cur);
+    return cells;
+  });
+  const header = rows.shift();
+  return rows.map(r => Object.fromEntries(header.map((h, i) => [h.trim(), (r[i] || '').trim()])));
+}
+
+function aggregateByTechnique(rows) {
+  const by = {};
+  for (const r of rows) {
+    const t = r.technique_id || 'unknown';
+    if (!by[t]) by[t] = { sent: 0, opened: 0, replied: 0, meeting: 0 };
+    by[t].sent++;
+    if (['opened', 'replied', 'meeting-booked'].includes(r.response)) by[t].opened++;
+    if (['replied', 'meeting-booked'].includes(r.response)) by[t].replied++;
+    if (r.response === 'meeting-booked') by[t].meeting++;
+  }
+  return by;
+}
+
+function renderSummary(rows) {
+  const total = rows.length;
+  const opened = rows.filter(r => ['opened', 'replied', 'meeting-booked'].includes(r.response)).length;
+  const replied = rows.filter(r => ['replied', 'meeting-booked'].includes(r.response)).length;
+  const meetings = rows.filter(r => r.response === 'meeting-booked').length;
+  const el = document.getElementById('summary');
+  el.innerHTML = `
+    <div class="stat"><div class="num">${total}</div><div class="label">total sends</div></div>
+    <div class="stat"><div class="num">${opened}</div><div class="label">any response</div></div>
+    <div class="stat"><div class="num">${replied}</div><div class="label">replied</div></div>
+    <div class="stat"><div class="num">${meetings}</div><div class="label">meetings booked</div></div>
+  `;
+}
+
+function renderCohort(byTech) {
+  const tbody = document.querySelector('#cohort tbody');
+  const sorted = Object.entries(byTech).sort((a, b) => b[1].sent - a[1].sent);
+  tbody.innerHTML = sorted.map(([t, b]) => {
+    const openPct = b.sent ? Math.round(100 * b.opened / b.sent) : 0;
+    const replyPct = b.sent ? Math.round(100 * b.replied / b.sent) : 0;
+    const meta = ATLAS[t];
+    const posterior = meta ? `d=${meta.d} [${meta.lo}–${meta.hi}], k=${meta.k}` : '—';
+    const name = meta ? meta.name : t;
+    return `<tr>
+      <td class="tech-name">${name}</td>
+      <td>${b.sent}</td>
+      <td>${b.opened}</td>
+      <td>${b.replied}</td>
+      <td>${b.meeting}</td>
+      <td>${openPct}%</td>
+      <td>${replyPct}%</td>
+      <td class="posterior">${posterior}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderBars(byTech) {
+  const sorted = Object.entries(byTech)
+    .map(([t, b]) => ({ t, open: b.sent ? b.opened / b.sent : 0, name: ATLAS[t]?.name || t }))
+    .sort((a, b) => b.open - a.open);
+  const max = Math.max(...sorted.map(s => s.open), 0.001);
+  document.getElementById('bars').innerHTML = sorted.map(s => `
+    <div class="bar-row">
+      <div class="bar-label">${s.name}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(s.open / max * 100).toFixed(1)}%"></div></div>
+      <div class="bar-value">${(s.open * 100).toFixed(0)}%</div>
+    </div>
+  `).join('');
+}
+
+function renderAtlas() {
+  const tbody = document.querySelector('#atlas tbody');
+  const rows = Object.entries(ATLAS).sort((a, b) => b[1].d - a[1].d);
+  tbody.innerHTML = rows.map(([id, m]) => `
+    <tr>
+      <td class="tech-name">${m.name}</td>
+      <td class="posterior">${m.d.toFixed(3)}</td>
+      <td class="posterior">[${m.lo.toFixed(3)}, ${m.hi.toFixed(3)}]</td>
+      <td>${m.k}</td>
+      <td>${m.p.toFixed(3)}</td>
+    </tr>
+  `).join('');
+}
+
+async function load() {
+  try {
+    const resp = await fetch('sample_log.csv');
+    const text = await resp.text();
+    const rows = parseCSV(text);
+    const byTech = aggregateByTechnique(rows);
+    renderSummary(rows);
+    renderCohort(byTech);
+    renderBars(byTech);
+    renderAtlas();
+  } catch (e) {
+    document.querySelector('.container').insertAdjacentHTML('afterbegin',
+      `<div class="banner" style="background:#FEE2E2;border-left-color:#B91C1C;color:#7F1D1D">
+        <strong>Failed to load sample_log.csv.</strong>
+        Open this page via a local server: <code>cd dashboard &amp;&amp; python -m http.server 8000</code>, then visit <code>localhost:8000</code>.
+        File-protocol (<code>file://</code>) loads block fetch() in most browsers.
+      </div>`
+    );
+    renderAtlas();
+  }
+}
+
+load();
+</script>
+</body>
+</html>

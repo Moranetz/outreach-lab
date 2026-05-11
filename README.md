@@ -155,6 +155,17 @@ outreach-lab analyze
 
 That table — built up from real sends — is the dataset that an AE hire promises. Most candidates promise the dataset. This candidate ships it.
 
+## Public dashboard
+
+A static HTML dashboard at [`dashboard/index.html`](./dashboard/) visualizes the
+cohort response-rate table for public consumption — summary stats, per-technique
+funnel, open-rate bar chart, and the Atlas posteriors as reference. Hosted via
+GitHub Pages at `https://Moranetz.github.io/outreach-lab/` (after enabling Pages
+in repo settings; folder: `/dashboard`).
+
+Drop your real `outreach_log.csv` in place of `dashboard/sample_log.csv` and
+the table updates live.
+
 ### 5. Inspect the full Atlas catalog
 
 ```bash
