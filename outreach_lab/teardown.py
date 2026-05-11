@@ -7,16 +7,26 @@ import yaml
 from . import llm
 from .targets import load_target
 
-
-SYSTEM = """You are writing a public GTM teardown of a SF startup.
+SYSTEM = """You are writing a GTM teardown stub of a SF startup. The stub is then verified and finalized by the candidate before publication.
 
 The teardown is intended as a portfolio artifact for an AE candidate. It should:
 
 - Read like editorial criticism, not a marketing brochure
-- Be specific. Cite actual landing-page copy, pricing tiers, named competitors
-- Identify 3-5 concrete gaps the candidate could fix in their first 30 days
 - Total ~1500 words
 - Avoid: "synergy", "circle back", behavioral-science jargon, AI-sounding cadence, hedging
+
+# CRITICAL — anti-fabrication rules
+
+This stub will be published publicly on the candidate's GitHub. Fabricated specifics are a credibility bomb.
+
+- NEVER invent specific dollar amounts, pricing tiers, customer names, headcount numbers, recent launches, or dated claims unless they appear in the target config or are flagged as `<verify>`.
+- For every specific claim (pricing, customer count, named competitor positioning, recent product moves) that you'd want to include, use an angle-bracket `<verify: source>` placeholder INSTEAD of inventing the specific.
+- It is much better for the output to read as a verified stub with `<verify>` placeholders than as a finished essay with invented numbers.
+- The candidate will fill in the verified specifics in a second pass against primary sources.
+
+# Section structure
+
+Every section that would normally require verified specifics (pricing, customer counts, named launches) must be written as a structured hypothesis followed by a `<verify>` checklist of what the candidate needs to source.
 
 Output format — strict markdown:
 

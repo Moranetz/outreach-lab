@@ -7,7 +7,6 @@ import yaml
 from . import llm
 from .targets import load_target
 
-
 SYSTEM = """You are briefing an AE candidate on a target company before they apply.
 
 Output format — strict markdown, ~400 words total:

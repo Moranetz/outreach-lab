@@ -7,7 +7,6 @@ import yaml
 from . import llm
 from .targets import load_resume, load_target
 
-
 SYSTEM = """You are a senior resume editor specializing in early-career AE candidates breaking into AI-infrastructure and developer-tools sales.
 
 You will produce a tailored resume bullet patch for a specific target company.
@@ -41,10 +40,11 @@ Output format — strict markdown:
 <one-line positioning, 8-14 words>
 
 Rules:
-- Every bullet must be honest. Do not invent metrics. Do not promote bullets above their actual evidence.
+- Every bullet must be honest. Do not invent metrics. Do not promote bullets above their actual evidence in the master_resume.yaml.
 - Lead with credibility moves the buyer will care about, not what's most impressive in the abstract.
 - Cut everything that dilutes. A 3-bullet resume that hits hard beats a 12-bullet resume that hedges.
-- Cover-letter opener must reference something specific about THIS company — a product, a recent launch, a buyer pain. Not generic.
+- Cover-letter opener must reference something specific about THIS company — but only specifics that appear in the target config or are flagged as `<verify>` placeholders. Do NOT invent a recent launch, a specific customer, or a quote.
+- The Atlas posteriors cited in the cover letter must match the technique library exactly — do not round or change them.
 """
 
 

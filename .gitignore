@@ -7,8 +7,6 @@ venv/
 .env
 .DS_Store
 
-# user data — keep per-target outputs local
+# user data — keep per-send log local; outputs are gitignored except the curated examples/ directory
 outputs/
 outreach_log.csv
-targets/*.yaml
-!targets/example.yaml

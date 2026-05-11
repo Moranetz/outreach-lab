@@ -6,6 +6,8 @@ import csv
 from datetime import date
 from pathlib import Path
 
+from . import atlas
+
 LOG_PATH = Path(__file__).resolve().parent.parent / "outreach_log.csv"
 
 FIELDS = [
@@ -30,7 +32,19 @@ def _ensure_header() -> None:
             writer.writeheader()
 
 
+def validate_technique(technique_id: str) -> None:
+    """Reject unknown technique ids — protects the dataset from typos."""
+    if technique_id not in atlas.all_technique_ids():
+        valid = sorted(atlas.all_technique_ids())
+        raise ValueError(
+            f"Unknown technique id '{technique_id}'. Valid ids:\n  "
+            + "\n  ".join(valid)
+        )
+
+
 def append(row: dict) -> None:
+    if row.get("technique_id"):
+        validate_technique(row["technique_id"])
     _ensure_header()
     row.setdefault("sent_date", date.today().isoformat())
     row = {k: row.get(k, "") for k in FIELDS}
@@ -39,8 +53,8 @@ def append(row: dict) -> None:
         writer.writerow(row)
 
 
-def analyze() -> str:
-    """Cohort response rate by technique."""
+def analyze(rich_output: bool = True) -> str:
+    """Cohort response rate by technique. Rich-formatted by default."""
     if not LOG_PATH.exists():
         return "No log yet. Use `outreach-lab track` after each send."
 
@@ -62,6 +76,46 @@ def analyze() -> str:
 
     if total == 0:
         return "No sends logged yet."
+
+    if rich_output:
+        try:
+            from rich.console import Console
+            from rich.table import Table
+        except ImportError:
+            rich_output = False
+
+    if rich_output:
+        from io import StringIO
+
+        from rich.console import Console
+        from rich.table import Table
+
+        buf = StringIO()
+        console = Console(file=buf, force_terminal=True, width=88)
+        table = Table(title=f"Outreach cohort — {total} sends", show_lines=False)
+        table.add_column("Technique", style="cyan", no_wrap=True)
+        table.add_column("Sent", justify="right")
+        table.add_column("Opened", justify="right")
+        table.add_column("Replied", justify="right")
+        table.add_column("Meetings", justify="right")
+        table.add_column("Open %", justify="right")
+        table.add_column("Reply %", justify="right")
+
+        for tech, b in sorted(by_tech.items(), key=lambda x: -x[1]["sent"]):
+            open_pct = (b["opened"] / b["sent"]) * 100 if b["sent"] else 0
+            reply_pct = (b["replied"] / b["sent"]) * 100 if b["sent"] else 0
+            table.add_row(
+                tech,
+                str(b["sent"]),
+                str(b["opened"]),
+                str(b["replied"]),
+                str(b["meeting"]),
+                f"{open_pct:.0f}%",
+                f"{reply_pct:.0f}%",
+            )
+
+        console.print(table)
+        return buf.getvalue()
 
     lines = [f"Total sends: {total}", "", "Technique | sent | opened | replied | meetings"]
     lines.append("---------|------|--------|---------|--------")

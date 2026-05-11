@@ -1,0 +1,22 @@
+slug: vapi
+company_name: Vapi
+company_url: https://vapi.ai
+careers_url: https://vapi.ai/careers
+category: ai-infra
+size_band: <verify — approx 80 people per LinkedIn>
+buyer_persona: |
+  Founder or first engineer at a startup building voice agents. Often building consumer
+  voice products, voice-driven customer service, or voice-first workflow tools. Cares
+  about: latency under 500ms, naturalness of voice, integration with LLM APIs.
+product_one_liner: <verify — pull from vapi.ai; typically positioned as "voice AI infrastructure" or "voice agents in production">
+pricing_summary: <verify — per-minute + per-call tiers; check public pricing page>
+known_competitors: [Retell AI, Bland AI, Synthflow, ElevenLabs (adjacent), OpenAI Realtime API]
+your_angle: |
+  Vapi's product is persuasion infrastructure — voice agents that move humans toward
+  outcomes. The Closing Evidence Atlas is Bayesian meta-analysis of the exact technique
+  library that informs how Vapi customers SHOULD be building voice scripts. Direct
+  topical match — Marion is the unfair-advantage AE here.
+target_role: Account Executive
+target_role_url: https://vapi.ai/careers
+ideal_first_contact: |
+  Head of GTM or co-founder. LinkedIn search: "Vapi" + "Sales" or "GTM" or "co-founder".

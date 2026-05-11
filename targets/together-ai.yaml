@@ -1,0 +1,23 @@
+slug: together-ai
+company_name: Together AI
+company_url: https://www.together.ai
+careers_url: https://www.together.ai/careers
+category: ai-infra
+size_band: <verify — approx 100 people per RepVue/LinkedIn>
+buyer_persona: |
+  Founder, CTO, or head-of-AI at a startup or AI-platform company that needs inference
+  + fine-tuning + training compute. Often technical, often open-source-curious. Cares
+  about: cost-per-token vs OpenAI/Anthropic API, custom-model hosting, throughput at scale.
+product_one_liner: <verify — pull from together.ai landing page; typically positioned as "the AI cloud" for open-source model hosting + training>
+pricing_summary: <verify — per-token + per-GPU-second; check the public pricing page for current tiers>
+known_competitors: [Modal Labs, Replicate, Baseten, Fireworks AI, OpenAI API, Anthropic API]
+your_angle: |
+  You are the buyer Together sells to — an indie iOS founder who has shipped Claude into
+  17 apps and would have chosen Together AI for OSS-model hosting if she'd needed it.
+  Your Closing Evidence Atlas signals research rigor that resonates with engineering-led GTM.
+  outreach-lab is sales tooling you built for THIS application — direct dogfooding signal.
+target_role: Account Executive
+target_role_url: https://www.together.ai/careers
+ideal_first_contact: |
+  Head of GTM, VP Sales, or — for the founding-AE shape — a co-founder.
+  LinkedIn search: "Together AI" + "Sales" or "GTM" or "Founding".

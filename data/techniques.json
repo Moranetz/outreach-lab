@@ -1,64 +1,117 @@
 {
   "_meta": {
-    "source": "Closing Evidence Atlas v0.1 — github.com/Moranetz/closing-evidence-atlas",
+    "source": "Closing Evidence Atlas v0.5 draft — github.com/Moranetz/closing-evidence-atlas",
     "extraction_date": "2026-05-10",
-    "note": "Posterior μ + 95% CI on Cohen's d, random-effects Bayesian meta-analysis (DerSimonian-Laird τ + importance sampling). Effect sizes are persuasion → conversion outcomes; not all techniques have closed-loop revenue evidence — see Atlas for inclusion criteria.",
-    "interpretation": "d ≈ 0.2 small, 0.5 medium, 0.8 large. CI excluding 0 = posterior P>0.95 the effect is positive."
+    "posterior_method": "Approximate Bayesian importance sampling (n_draws=10000) over DerSimonian-Laird τ; weakly-informative priors per pre-registered protocol (μ~N(0,0.5), τ~Half-Normal(0,0.3))",
+    "interpretation": "d ≈ 0.2 small, 0.5 medium, 0.8 large. P(μ>0) is posterior probability the population effect is positive. Status flags: DOMINANT/STRONG/MODEST/FRAGILE/DESERT reflect the size of the underlying inclusion literature, not the magnitude of any one effect.",
+    "k_threshold_note": "Posteriors are reported only for techniques with k≥2 meta-eligible studies. The 6 techniques with current posteriors are the Atlas v0.1 pilot; 14 more techniques are projected to cross k≥5 in Phase 2 expansion. The 15 'desert' techniques have ZERO peer-reviewed studies meeting inclusion criteria — this is the Atlas's most counterintuitive finding."
   },
   "techniques": [
     {
       "id": "gain-framing",
       "name": "Gain framing",
+      "cluster": "framing",
       "definition": "Emphasize positive outcomes of the desired behavior (\"you'll save X\") rather than negative consequences of not acting.",
-      "atlas_posterior": {"d_mu": 0.354, "ci_lower": 0.12, "ci_upper": 0.59, "k_studies": 8, "tau2": 0.08},
-      "when_to_use": "Customer is already curious / inbound. Activation moment.",
-      "when_to_avoid": "Hard sell / contested negotiation — loss framing tends to outperform there.",
-      "example_skeleton": "Just shipped X. Teams using it cut Y from Z to W in the first 30 days."
+      "stage1_status": "DOMINANT LITERATURE",
+      "atlas_posterior": {"d_mu": 0.354, "ci_lower": 0.280, "ci_upper": 0.429, "k_studies": 9, "p_mu_gt_zero": 1.000, "p_mu_gt_practical": 0.9997, "studies": "atlas-005;atlas-009;atlas-012;atlas-013;atlas-014;atlas-015;atlas-045;atlas-046;atlas-048"},
+      "when_to_use": "Customer is curious / inbound. Activation moment. First-touch on a warm prospect.",
+      "when_to_avoid": "Buyer is already considering a switch (loss framing tends to outperform there).",
+      "example_skeleton": "Teams using <product> typically <positive outcome> within <timeframe>."
     },
     {
       "id": "loss-framing",
-      "name": "Loss framing",
+      "name": "Loss-aversion framing",
+      "cluster": "framing",
       "definition": "Emphasize negative consequences of NOT adopting the behavior.",
-      "atlas_posterior": {"d_mu": 0.48, "ci_lower": 0.21, "ci_upper": 0.78, "k_studies": 9, "tau2": 0.11},
-      "when_to_use": "Buyer is already considering switching / dissatisfied with status quo.",
-      "when_to_avoid": "First touch with a cold prospect — can read as fear-mongering.",
-      "example_skeleton": "Most teams in your stage are burning $X/mo on Y. The fix takes 20 minutes."
+      "stage1_status": "DOMINANT LITERATURE",
+      "atlas_posterior": {"d_mu": 0.327, "ci_lower": 0.249, "ci_upper": 0.410, "k_studies": 7, "p_mu_gt_zero": 1.000, "p_mu_gt_practical": 0.9986, "studies": "atlas-005;atlas-012;atlas-013;atlas-014;atlas-015;atlas-045;atlas-046"},
+      "when_to_use": "Buyer is dissatisfied with status quo. Already evaluating alternatives.",
+      "when_to_avoid": "Cold first-touch — can read as fear-mongering.",
+      "example_skeleton": "Most teams in your situation are leaving <quantified loss> on the table by staying on <status quo>."
+    },
+    {
+      "id": "regulatory-fit",
+      "name": "Regulatory fit",
+      "cluster": "framing",
+      "definition": "Match message framing to the recipient's regulatory orientation (promotion-focused → gain framing; prevention-focused → loss/security framing). The 'fit' itself produces additional persuasive lift beyond the framing alone.",
+      "stage1_status": "STRONG EVIDENCE",
+      "atlas_posterior": {"d_mu": 0.484, "ci_lower": 0.346, "ci_upper": 0.632, "k_studies": 3, "p_mu_gt_zero": 0.9998, "p_mu_gt_practical": 0.9971, "studies": "atlas-015;atlas-033;atlas-049"},
+      "when_to_use": "When you have prior signal on the buyer's regulatory orientation (e.g. CFO/risk-mgmt → prevention; CEO/growth → promotion).",
+      "when_to_avoid": "Cold first-touch with no buyer signal.",
+      "example_skeleton": "If CFO/risk: '<product> reduces <named risk> from X to Y.' If CEO/growth: '<product> unlocks <named upside>.'"
+    },
+    {
+      "id": "extreme-anchor",
+      "name": "Extreme anchor",
+      "cluster": "negotiation-anchor",
+      "definition": "Establish a high (or low) reference point so the subsequent ask feels small (or large) by contrast.",
+      "stage1_status": "STRONG EVIDENCE",
+      "atlas_posterior": {"d_mu": 0.435, "ci_lower": 0.043, "ci_upper": 0.745, "k_studies": 2, "p_mu_gt_zero": 0.983, "p_mu_gt_practical": 0.914, "studies": "atlas-005;atlas-007"},
+      "when_to_use": "Pricing conversation. Negotiation opener. Already in dialogue.",
+      "when_to_avoid": "Cold first-touch subject line — reads as a stunt.",
+      "example_skeleton": "Most teams your size end up at <high anchor>/yr on this stack. We'd start you at <real ask>."
     },
     {
       "id": "social-proof",
       "name": "Social proof",
-      "definition": "Cite peers / similar entities who have already adopted.",
-      "atlas_posterior": {"d_mu": 0.42, "ci_lower": 0.15, "ci_upper": 0.71, "k_studies": 11, "tau2": 0.09},
-      "when_to_use": "Buyer is uncertain about category. Mid-funnel.",
-      "when_to_avoid": "Buyer thinks of themselves as a category-of-one (rare founders, contrarians).",
-      "example_skeleton": "5 of the 10 fastest-growing X are already on Y."
+      "cluster": "social-cue",
+      "definition": "Cite peers or similar entities who have already adopted.",
+      "stage1_status": "STRONG EVIDENCE",
+      "atlas_posterior": {"d_mu": 0.682, "ci_lower": -0.206, "ci_upper": 1.296, "k_studies": 2, "p_mu_gt_zero": 0.937, "p_mu_gt_practical": 0.866, "studies": "atlas-004;atlas-037"},
+      "when_to_use": "Mid-funnel. Buyer is uncertain about category fit and looking for de-risking signal.",
+      "when_to_avoid": "Buyer self-identifies as a category-of-one (rare founders, contrarians). Cold first-touch where the named peers aren't recognizable.",
+      "example_skeleton": "<N> of the <segment> we work with switched from <competitor>. Common reason: <specific gap>.",
+      "caveats": "High-heterogeneity outlier (τ_median=0.846); CrI does not cleanly exclude zero. Treat as suggestive, not settled."
     },
     {
-      "id": "scarcity-urgency",
-      "name": "Scarcity / urgency",
-      "definition": "Limited availability, limited time, or limited slots.",
-      "atlas_posterior": {"d_mu": 0.51, "ci_lower": 0.20, "ci_upper": 0.85, "k_studies": 7, "tau2": 0.14},
-      "when_to_use": "Late-funnel — buyer has decided category, deciding vendor.",
-      "when_to_avoid": "Cold first touch — false scarcity is the #1 trust-killer in B2B.",
-      "example_skeleton": "We're taking on 3 design partners for Q3. 1 left."
-    },
-    {
-      "id": "anchoring",
-      "name": "Anchoring",
-      "definition": "Establish a high reference point so the actual ask feels small.",
-      "atlas_posterior": {"d_mu": 0.39, "ci_lower": 0.07, "ci_upper": 0.74, "k_studies": 6, "tau2": 0.12},
-      "when_to_use": "Pricing conversation. Negotiation opener.",
-      "when_to_avoid": "First-message subject line.",
-      "example_skeleton": "Most teams of your size end up at $120k/yr on this stack. We'd start you at $40k."
-    },
-    {
-      "id": "specificity-credibility",
-      "name": "Specificity / credibility (precise numbers > round numbers)",
-      "definition": "Use concrete, asymmetric numbers (\"$47,310 saved\" not \"$50k saved\") to signal real measurement.",
-      "atlas_posterior": {"d_mu": 0.31, "ci_lower": 0.04, "ci_upper": 0.60, "k_studies": 5, "tau2": 0.07},
-      "when_to_use": "Anywhere claims appear.",
-      "when_to_avoid": "When you actually don't have specific numbers — fabricated precision is worse than round honesty.",
-      "example_skeleton": "Cut p99 from 412ms to 89ms in 11 days."
+      "id": "commitment-consistency",
+      "name": "Commitment & consistency",
+      "cluster": "compliance",
+      "definition": "Secure a small, public commitment that aligns with the larger ask. The buyer's drive for self-consistency then pulls them toward the larger commitment.",
+      "stage1_status": "MODEST EVIDENCE",
+      "atlas_posterior": {"d_mu": 0.590, "ci_lower": 0.331, "ci_upper": 0.782, "k_studies": 2, "p_mu_gt_zero": 0.999, "p_mu_gt_practical": 0.993, "studies": "atlas-040;atlas-044"},
+      "when_to_use": "Discovery → demo handoff. Small ask first (15-min call, single-page brief), then escalate.",
+      "when_to_avoid": "When the small ask doesn't naturally chain to the larger one (manipulative if forced).",
+      "example_skeleton": "Quick 15 minutes to confirm <named pain> applies to your team. If it doesn't, we both move on."
     }
+  ],
+  "techniques_without_posteriors": [
+    {"id": "fitd", "name": "Foot-in-the-door", "cluster": "compliance", "stage1_status": "DOMINANT LITERATURE", "note": "k≥5 inclusion records; posterior pending Phase 2 expansion"},
+    {"id": "ditf", "name": "Door-in-the-face", "cluster": "compliance", "stage1_status": "DOMINANT LITERATURE", "note": "k≥5 inclusion records; posterior pending"},
+    {"id": "concrete-construal", "name": "Concrete-vs-abstract framing", "cluster": "framing", "stage1_status": "STRONG EVIDENCE"},
+    {"id": "lowball", "name": "Low-ball", "cluster": "compliance", "stage1_status": "STRONG EVIDENCE"},
+    {"id": "authority", "name": "Authority cues", "cluster": "social-cue", "stage1_status": "MODEST EVIDENCE"},
+    {"id": "reciprocity", "name": "Reciprocity", "cluster": "social-cue", "stage1_status": "MODEST EVIDENCE"},
+    {"id": "scarcity", "name": "Scarcity", "cluster": "framing", "stage1_status": "MODEST EVIDENCE"},
+    {"id": "disrupt-then-reframe", "name": "Disrupt-then-reframe", "cluster": "compliance", "stage1_status": "MODEST EVIDENCE"}
+  ],
+  "fragile_techniques": [
+    {"id": "anchor-with-range", "name": "Range anchor", "cluster": "negotiation-anchor"},
+    {"id": "labeling", "name": "Affect labeling", "cluster": "question-form"},
+    {"id": "liking", "name": "Liking / similarity / rapport", "cluster": "social-cue"},
+    {"id": "tna", "name": "That's-not-all", "cluster": "compliance"},
+    {"id": "calibrated-question", "name": "Calibrated question", "cluster": "question-form"},
+    {"id": "takeaway", "name": "Takeaway close", "cluster": "structural-close"},
+    {"id": "assumptive", "name": "Assumptive close", "cluster": "structural-close"},
+    {"id": "feel-felt-found", "name": "Feel-felt-found", "cluster": "post-objection"},
+    {"id": "precise-anchor", "name": "Precise number anchor", "cluster": "negotiation-anchor"},
+    {"id": "silence", "name": "Strategic silence after offer", "cluster": "closing-environment"}
+  ],
+  "empirical_deserts": [
+    {"id": "accusation-audit", "name": "Accusation audit", "cluster": "question-form"},
+    {"id": "alternative-choice", "name": "Alternative-choice close", "cluster": "structural-close"},
+    {"id": "ben-franklin", "name": "Ben Franklin / pros-and-cons close", "cluster": "structural-close"},
+    {"id": "bracketing", "name": "Bracketing", "cluster": "negotiation-anchor"},
+    {"id": "isolate-and-conquer", "name": "Isolate-the-objection", "cluster": "post-objection"},
+    {"id": "mirroring", "name": "Mirroring (verbal repetition)", "cluster": "question-form"},
+    {"id": "multi-threading", "name": "Multi-threading / champion-development", "cluster": "closing-environment"},
+    {"id": "mutual-close-plan", "name": "Mutual close plan", "cluster": "closing-environment"},
+    {"id": "puppy-dog", "name": "Puppy-dog close", "cluster": "structural-close"},
+    {"id": "reverse-objection", "name": "Boomerang / reverse objection", "cluster": "post-objection"},
+    {"id": "sharp-angle", "name": "Sharp-angle close", "cluster": "structural-close"},
+    {"id": "spin-implication", "name": "SPIN implication question", "cluster": "question-form"},
+    {"id": "spin-need-payoff", "name": "SPIN need-payoff question", "cluster": "question-form"},
+    {"id": "summary-close", "name": "Summary close", "cluster": "structural-close"},
+    {"id": "trial-close", "name": "Trial close", "cluster": "structural-close"}
   ]
 }

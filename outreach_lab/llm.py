@@ -16,7 +16,7 @@ MODEL_FAST = "claude-sonnet-4-6"
 MODEL_DEEP = "claude-opus-4-7"
 
 
-def _client() -> "anthropic.Anthropic":
+def _client() -> anthropic.Anthropic:
     if anthropic is None:
         sys.exit(
             "[outreach-lab] anthropic SDK not installed. Run: pip install anthropic"
